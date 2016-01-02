@@ -21,7 +21,7 @@ if (env.PROD) {
   plugins.push(
     new ExtractTextPlugin(path.join('assets', 'css', '[name].css'), { allChunks: true }),
     new webpack.optimize.UglifyJsPlugin(),
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: 'production' }}),
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') }}),
     new webpack.NoErrorsPlugin()
   );
 }
