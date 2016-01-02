@@ -9,6 +9,7 @@
     "url": "git@github.com:theJoeBiz/mlb_offensive_stats.git"
   },
   "dependencies": {
+    "babel-polyfill": "^6.3.14",
     "c3": "^0.4.10",
     "classnames": "^2.2.1",
     "moment": "^2.10.6",
