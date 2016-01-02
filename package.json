@@ -39,7 +39,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run webpack",
     "start": "NODE_ENV=development node dev-server ./webpack/config",
-    "webpack": "webpack --colors --progress --config --bail ./webpack/config"
+    "webpack": "webpack --colors --progress --config ./webpack/config --bail"
   },
   "config": {
     "buildDir": "./dist",
