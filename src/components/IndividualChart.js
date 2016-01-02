@@ -4,43 +4,52 @@ import classnames from 'classnames';
 
 import C3Chart from './C3Chart';
 
-class Chart extends Component {
+class IndividualChart extends Component {
   constructor(props, context) {
     super(props, context);
   }
 
   render() {
-    let { data, values, ...options } = this.props;
+    let { data, stat, averages, ...options } = this.props;
+
+    let json = data.map(game => {
+      return {
+        date: game.date,
+        gameNumber: game.gameNumber,
+        player: game[stat],
+        league: averages[stat]
+      };
+    });
 
     let defaultOptions = {
       data: {
-        json: data,
+        json: json,
         keys: {
           x: 'gameNumber',
-          value: values
+          value: ['player', 'league']
+        },
+        colors: {
+          player: '#1f77b4',
+          league: '#d62728'
         },
         names: {
-          AVG: 'Batting Average',
-          OPS: 'On-base Plus Slugging',
-          SLG: 'Slugging Percentage',
-          OBP: 'On-base Percentage',
-          BBP: 'Walk Percentage',
-          BBPSO: 'Walks per Strike Out',
-          ISO: 'Isolated Power'
+          player: 'Jason Kipnis',
+          league: 'League Average'
         }
       },
       tooltip: {
         format: {
           title: x => `Game #${x} - ${data[x - 1].date.format('MMM D YYYY')}`,
           value: (value, ratio, id, index) => {
-            let lastValue = (data[index - 1] || {})[id] || 0;
+            let game = json[index];
+            let otherValue = id === 'player' ? game.league : game.player;
 
-            let changed = value - lastValue;
-            let symbol = changed < 0 ? '-' : '+';
+            let difference = value - otherValue;
+            let symbol = difference < 0 ? '-' : '+';
 
             let changedClass = classnames(
-              { 'red-text': changed < 0 },
-              { 'green-text text-darken-2': changed >= 0 }
+              { 'hidden': difference < 0 },
+              { 'green-text text-darken-2': difference >= 0 }
             );
 
             return renderToStaticMarkup(
@@ -48,7 +57,7 @@ class Chart extends Component {
                 <span>{value.toFixed(3)}</span>
                 &nbsp;
                 <small className={changedClass} style={{ width: 35, display: 'inline-block' }}>
-                  {symbol} {Math.abs(changed).toFixed(3)}
+                  {symbol} {Math.abs(difference).toFixed(3)}
                 </small>
               </div>
             );
@@ -63,4 +72,4 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+export default IndividualChart;

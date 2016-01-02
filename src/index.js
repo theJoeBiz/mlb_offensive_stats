@@ -4,10 +4,12 @@ import ReactDOM from 'react-dom';
 import './less/app.less';
 
 import Col from './components/Col';
-import Chart from './components/Chart';
 import ChartCard from './components/ChartCard';
 
-import { games } from './data';
+import CombinedChart from './components/CombinedChart';
+import IndividualChart from './components/IndividualChart';
+
+import { games, leagueWideAverages } from './data';
 
 class App extends Component {
   render() {
@@ -26,73 +28,83 @@ class App extends Component {
         <div className="app-canvas">
           <h4 className="header">Jason Kipnis</h4>
           <ChartCard>
-            <Chart
-              values={['AVG', 'OPS', 'SLG', 'OBP', 'BBP', 'BBPSO', 'ISO', 'BABIP']}
+            <CombinedChart
+              stats={['AVG', 'OPS', 'SLG', 'OBP', 'BBP', 'BBPSO', 'ISO', 'BABIP']}
               data={games}
             />
           </ChartCard>
+          <br/>
+          <h5 className="header">Individual Statistics</h5>
           <div className="row">
             <Col lg={2}>
               <ChartCard title="Batting Average" calculation="H / AB">
-                <Chart
-                  values={['AVG']}
+                <IndividualChart
+                  stat="AVG"
                   data={games}
+                  averages={leagueWideAverages}
                 />
               </ChartCard>
             </Col>
             <Col lg={2}>
-              <ChartCard title="OPS" calculation="OBP + SLG">
-                <Chart
-                  values={['OPS']}
+              <ChartCard title="On-base Plus Slugging" calculation="OBP + SLG">
+                <IndividualChart
+                  stat="OPS"
                   data={games}
+                  averages={leagueWideAverages}
                 />
               </ChartCard>
             </Col>
             <Col lg={2}>
               <ChartCard title="Slugging Average" calculation="TB / AB">
-                <Chart
-                  values={['SLG']}
+                <IndividualChart
+                  stat="SLG"
                   data={games}
+                  averages={leagueWideAverages}
                 />
               </ChartCard>
             </Col>
             <Col lg={2}>
               <ChartCard title="On-Base Percentage" calculation="H + BB + HBP / PA">
-                <Chart
-                  values={['OBP']}
+                <IndividualChart
+                  stat="OBP"
                   data={games}
+                  averages={leagueWideAverages}
                 />
               </ChartCard>
             </Col>
             <Col lg={2}>
-              <ChartCard title="BB Percentage" calculation="BB / PA">
-                <Chart
-                  values={['BBP']}
+              <ChartCard title="Walk Percentage" calculation="BB / PA">
+                <IndividualChart
+                  stat="BBP"
                   data={games}
+                  averages={leagueWideAverages}
                 />
               </ChartCard>
             </Col>
             <Col lg={2}>
-              <ChartCard title="BB per Strike Out" calculation="BB / SO">
-                <Chart
-                  values={['BBPSO']}
+              <ChartCard title="Walks per Strike Out" calculation="BB / SO">
+                <IndividualChart
+                  stat="BBPSO"
                   data={games}
+                  averages={leagueWideAverages}
                 />
               </ChartCard>
             </Col>
             <Col lg={2}>
               <ChartCard title="Isolated Power" calculation="SLG - AVG">
-                <Chart
-                  values={['ISO']}
+                <IndividualChart
+                  stat="ISO"
                   data={games}
+                  averages={leagueWideAverages}
                 />
               </ChartCard>
             </Col>
             <Col lg={2}>
               <ChartCard title="Batting Average on Balls in Play" calculation="H - HR / AB - K - HR + SF">
-                <Chart
-                  values={['BABIP']}
+                <IndividualChart
+                  stat="BABIP"
                   data={games}
+                  averages={leagueWideAverages}
                 />
               </ChartCard>
             </Col>
