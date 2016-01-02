@@ -48,8 +48,9 @@ class IndividualChart extends Component {
             let symbol = difference < 0 ? '-' : '+';
 
             let changedClass = classnames(
-              { 'hidden': difference < 0 },
-              { 'green-text text-darken-2': difference >= 0 }
+              { 'red-text': difference < 0 },
+              { 'green-text text-darken-2': difference >= 0 },
+              { 'hidden': id === 'league' }
             );
 
             return renderToStaticMarkup(
