@@ -22,7 +22,7 @@ class App extends Component {
             <div className="nav-wrapper blue darken-3">
               <span className="brand-logo left">Cleveland Indians</span>
               <ul className="right">
-                <li><a href="javascript:;">Joe Duchnowski</a></li>
+                <li><a href="javascript:;">User Name</a></li>
               </ul>
             </div>
           </nav>
