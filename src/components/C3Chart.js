@@ -10,8 +10,11 @@ class C3Chart extends Component {
   }
 
   componentDidMount() {
-    // Waiting before rendering improves height/width calculations
-    setTimeout(() => this.generate(this.props), 100);
+    this.generate(this.props);
+
+    // The sizing calculations are done before everything has loaded
+    // Do a quick resize shortly after to make sure it fits the box
+    setTimeout(() => this.chart.resize(), 1000);
   }
 
   componentWillReceiveProps(nextProps) {

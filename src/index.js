@@ -20,7 +20,7 @@ class App extends Component {
         <div className="navbar-fixed">
           <nav>
             <div className="nav-wrapper blue darken-3">
-              <span className="brand-logo">Cleveland Indians</span>
+              <span className="brand-logo left">Cleveland Indians</span>
               <ul className="right">
                 <li><a href="javascript:;">Joe Duchnowski</a></li>
               </ul>

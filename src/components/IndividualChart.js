@@ -57,8 +57,10 @@ class IndividualChart extends Component {
               <div>
                 <span>{value.toFixed(3)}</span>
                 &nbsp;
-                <small className={changedClass} style={{ width: 35, display: 'inline-block' }}>
-                  {symbol} {Math.abs(difference).toFixed(3)}
+                <small className={changedClass}>
+                  <span style={{ minWidth: '4em', display: 'inline-block' }}>
+                    {symbol} {Math.abs(difference).toFixed(3)}
+                  </span>
                 </small>
               </div>
             );
